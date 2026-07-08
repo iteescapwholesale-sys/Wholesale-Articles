@@ -1,0 +1,777 @@
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itees Caps Wholesale Article</title>
+    <style>
+        :root {
+            --primary-maroon: #7a0000;
+            --light-maroon: #990000;
+            --dark-maroon: #5c0000;
+            --accent-gold: #d4af37;
+            --dark-gold: #aa841c;
+            --text-dark: #1e293b;
+            --text-light: #f8fafc;
+            --bg-light: #fdfbf7;
+            --card-bg: #ffffff;
+            /* Brownish Blue Custom Colors */
+            --brownish-blue-dark: #2c3e50;
+            --brownish-blue-light: #34495e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ── PARTICLES ── */
+        #particle-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+/* ── TOP BAR (English text colored golden, bottom line colored golden) ── */
+        .top-bar {
+            background: linear-gradient(90deg, var(--dark-maroon), var(--primary-maroon), var(--dark-maroon));
+            background-size: 300% 100%;
+            animation: barShimmer 5s linear infinite;
+            color: #ffd700; /* Text set to Golden color */
+            text-align: center;
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            border-bottom: 3px solid var(--accent-gold); /* یہاں لائن کو Golden کر دیا گیا ہے */
+            text-transform: uppercase;
+            position: relative;
+            z-index: 100;
+        }
+        @keyframes barShimmer {
+            0%   { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* ── HEADER WITH RESPONSIVE LOGO ALIGNMENT ── */
+        header {
+            background-color: rgba(255,255,255,0.97);
+            padding: 15px 5%;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s, box-shadow 0.3s, padding 0.3s;
+        }
+        header.scrolled {
+            border-bottom-color: var(--brownish-blue-dark);
+            box-shadow: 0 6px 25px rgba(44,62,80,0.15);
+            padding: 10px 5%;
+        }
+
+/* Logo Area Setup with Bigger Size and Soft Shadow Background */
+        .logo-area {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .logo-area img {
+            height: 110px; 
+            width: auto;
+            display: block;
+            background: rgba(245, 240, 230, 0.6); /* Soft light shade behind logo */
+            padding: 6px;
+            border-radius: 8px;
+            border: 1px solid var(--accent-gold); /* یہاں گولڈن بارڈر ایڈ کر دیا گیا ہے */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.09); 
+        }
+
+        .contact-top { text-align: right; font-size: 0.9rem; }
+        .contact-top a {
+            color: var(--primary-maroon);
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 15px;
+            transition: color 0.2s;
+        }
+        .contact-top a:hover { color: var(--accent-gold); }
+
+        /* ── HERO SECTION (Maroon changed to Brownish Blue) ── */
+        .hero {
+            background: linear-gradient(
+                90deg,
+                #1a252f,
+                #2c3e50,
+                #34495e,
+                #2c3e50,
+                #1a252f
+            );
+            background-size: 300% 100%;
+            animation: heroShimmer 5s linear infinite;
+            padding: 50px 5% 40px;
+            color: var(--text-light);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        @keyframes heroShimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            color: var(--accent-gold);
+            animation: fadeDown 1.2s ease both;
+        }
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-25px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero .tagline {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: var(--text-light);
+            animation: fadeUp 1.2s 0.5s ease both;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .validity-box {
+            border: 1.7px dashed var(--accent-gold);
+            padding: 15px 30px;
+            display: inline-block;
+            background: rgba(0,0,0,0.1);
+            font-size: 0.85rem;
+            border-radius: 6px;
+            animation: fadeUp 0.8s 0.35s ease both;
+        }
+
+        /* ── HERO IMAGE ── */
+        .hero-image-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-bottom: 5px solid var(--brownish-blue-dark);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+            position: relative;
+            z-index: 1;
+        }
+        .hero-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        .hero-image-container:hover img { transform: scale(1.02); }
+
+        /* ── FLOATING SOCIALS ── */
+        .floating-socials {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 1000;
+        }
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+            border: 2px solid var(--accent-gold);
+        }
+        .social-icon:hover {
+            transform: scale(1.2) translateX(-5px);
+            box-shadow: 0 8px 20px rgba(44,62,80,0.35);
+        }
+        .social-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* ── INTRO ── */
+        .intro-section {
+            padding: 30px 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .intro-section h3 {
+            color: var(--brownish-blue-dark);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .intro-section p {
+            font-size: 1.1rem;
+            color: #475569;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* ── SECTION TITLE ── */
+        .section-title {
+            text-align: center;
+            padding: 20px 0 10px;
+            font-size: 2rem;
+            color: var(--brownish-blue-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-gold);
+            display: block;
+            margin: 10px auto 0;
+        }
+
+        /* ── PRODUCT GRID & CARDS ── */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 25px 5%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s;
+            will-change: transform;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        .product-card.card-visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s;
+        }
+
+        .product-header {
+            background-color: var(--brownish-blue-dark);
+            color: var(--text-light);
+            padding: 25px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            border-bottom: 4px solid var(--accent-gold);
+        }
+        .product-body { padding: 25px; flex-grow: 1; }
+        .product-meta { margin-bottom: 15px; font-size: 0.95rem; }
+        .product-meta .label { font-weight: bold; color: #64748b; }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: #b45309;
+            font-weight: 800;
+            margin: 15px 0;
+            background: #fffbeb;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid #fef3c7;
+        }
+
+        .spec-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.85rem; }
+        .spec-table th, .spec-table td { border: 1px solid #e2e8f0; padding: 6px 10px; text-align: left; }
+        .spec-table th { background-color: #f1f5f9; color: var(--text-dark); }
+        .spec-table tr { transition: background 0.2s; }
+        .spec-table tr:hover td { background: #fef9e7; }
+
+        /* ── PROCEDURES ── */
+        .procedures-section {
+            background-color: #f1f5f9;
+            padding: 25px 5%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .procedure-box {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--brownish-blue-dark);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+        .procedure-box::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--brownish-blue-dark), var(--accent-gold), transparent);
+        }
+        .procedure-box.box-visible { opacity: 1; transform: translateX(0); }
+        .procedure-box h4 {
+            color: var(--brownish-blue-dark);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .procedure-list { list-style-position: inside; padding-left: 5px; }
+        .procedure-list li {
+            margin-bottom: 12px;
+            color: #334155;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 8px;
+            transition: background 0.2s, padding-left 0.2s;
+            border-radius: 4px;
+            padding-left: 6px;
+        }
+        .procedure-list li:hover {
+            background: #fef9e7;
+            padding-left: 12px;
+        }
+        .procedure-list li:last-child { border-bottom: none; }
+
+        /* ── NOTE BOX ── */
+        .note-box {
+            background-color: #fffaf0;
+            border: 1px solid #feebc8;
+            border-left: 4px solid #dd6b20;
+            padding: 25px;
+            border-radius: 6px;
+            margin: 20px 5%;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .note-box.box-visible { opacity: 1; transform: translateY(0); }
+        .note-box ul { padding-left: 20px; margin-top: 10px; }
+        .note-box li { margin-bottom: 6px; }
+
+        /* ── CONTACT ── */
+        .contact-section {
+            background: linear-gradient(135deg, var(--brownish-blue-dark), var(--brownish-blue-light) 50%, var(--brownish-blue-dark));
+            color: var(--text-light);
+            padding: 40px 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .contact-container { max-width: 600px; margin: 0 auto; position: relative; z-index: 2; }
+        .contact-container h2 { font-size: 1.9rem; margin-bottom: 8px; color: var(--accent-gold); }
+
+        .btn-whatsapp {
+            display: inline-block;
+            background-color: #25d366;
+            color: white;
+            padding: 14px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 30px;
+            text-decoration: none;
+            margin: 20px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            animation: pulseGreen 2.5s ease-in-out infinite;
+        }
+        @keyframes pulseGreen {
+            0%,100% { box-shadow: 0 4px 10px rgba(37,211,102,0.35); }
+            50%      { box-shadow: 0 4px 28px rgba(37,211,102,0.7); }
+        }
+        .btn-whatsapp:hover {
+            background-color: #20ba5a;
+            transform: translateY(-4px) scale(1.04);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background-color: var(--brownish-blue-dark);
+            color: #cbd5e1;
+            text-align: center;
+            padding: 80px 20px 40px;
+            position: relative;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            z-index: 1;
+        }
+        .footer-logo-container {
+            position: absolute;
+            left: 130px;
+            bottom: 20px;
+        }
+        .footer-logo-container img {
+            height: 120px;
+            width: auto;
+            background: white;
+            padding: 8px;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+        .footer-logo-container img:hover { transform: scale(1.06); }
+        footer p { margin-bottom: 10px; }
+
+        /* ── SCROLL-TO-TOP ── */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 20px;
+            width: 46px;
+            height: 46px;
+            background: linear-gradient(135deg, #000080, #00004d);
+            color: var(--accent-gold);
+            border: 2px solid var(--accent-gold);
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s, transform 0.3s;
+            box-shadow: 0 4px 12px rgba(44,62,80,0.4);
+        }
+        .scroll-top.show { opacity: 1; pointer-events: auto; }
+        .scroll-top:hover { transform: translateY(-4px); }
+
+        /* ── RESPONSIVE MEDIA QUERIES ── */
+        @media (max-width: 992px) {
+            .footer-logo-container { position: static; display: inline-block; margin-bottom: 20px; }
+            footer { padding: 40px 20px; }
+        }
+        
+        /* Mobile View Alignment Settings */
+        @media (max-width: 768px) {
+            header { 
+                flex-direction: column; 
+                text-align: center; 
+                gap: 15px; 
+            }
+            .logo-area {
+                align-items: center; /* Mobile phone par bilkul center align */
+                text-align: center;
+            }
+            .logo-area img {
+                margin: 0 auto 5px auto; /* Centre position element */
+            }
+            .contact-top { text-align: center; }
+            .hero h2 { font-size: 1.8rem; }
+            .floating-socials { 
+                position: static; 
+                flex-direction: row; 
+                justify-content: center; 
+                margin-bottom: 20px; 
+                transform: none; 
+            }
+        }
+
+        /* ── GENERIC REVEAL ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .reveal.vis { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+<canvas id="particle-canvas"></canvas>
+
+<div class="top-bar">
+ ALL THESE ARTICLES BELONG TO 'PAR BRAND', AND THESE ARE WHOLESALE DESIGNS.
+</div>
+
+<header id="site-header">
+    <div class="logo-area">
+        <!-- Logo bottom walay ki tarah bara kar diya gaya he or peeche shadow/shade laga diya gaya he. Brand text line hata di gayi he -->
+        <img src="parlogo-01.jpg" alt="Par By Itees Logo">
+    </div>
+    <div class="contact-top">
+        <a href="mailto:iteesonline87@gmail.com">📩 iteesonline87@gmail.com</a>
+        <a href="tel:+923354287572">📞 +923354287572</a>
+    </div>
+</header>
+
+<div class="floating-socials">
+    <a href="https://wa.me/923354287572" class="social-icon" title="WhatsApp" target="_blank">
+    <img src="wa.jpg" alt="WhatsApp">
+    </a>
+    <a href="https://iteesonline.com/" class="social-icon" title="Email">
+    <img src="www.jpg" alt="Email">
+    </a>
+</div>
+
+<!-- Hero Section: Background color changed from Maroon to Browns Blue -->
+<section class="hero">
+    <h2>WHOLESALE DESIGNS</h2>
+    <h3 class="tagline">EMBRIODRY KOOFI &bull; COMFORT KOOFI &bull; PLAIN KOOFI &bull; CLOTH KOOFI</h3>
+</section>
+
+<div class="hero-image-container">
+    <img src="comfort.jpg" alt="Product Portfolio Display">
+</div>
+
+<section class="intro-section reveal">
+    <h2 style="color: var(--dark-gold);">Welcome to PAR by ITEES</h2>
+    <p>Where you get the finest selection of high-quality, stylish, comfortable, and durable caps. Our goal is to provide premium products at affordable prices. Explore our unique collection and choose the perfect cap that matches your style.</p>
+</section>
+
+<!-- ===== PRODUCT IMAGE GALLERY START ===== -->
+<style>
+.product-showcase{
+    max-width:1400px;
+    margin:40px auto 30px;
+    padding:0 2%;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.product-showcase img{
+    width:100%;
+    height:auto;
+    display:block;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    transition:all .35s ease;
+    cursor:pointer;
+}
+
+.product-showcase img:hover{
+    transform:scale(1.03);
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+/* Popup */
+#imageModal{
+    display:none;
+    position:fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.92);
+    justify-content:center;
+    align-items:center;
+    z-index:999999;
+}
+
+#imageModal img{
+    max-width:92%;
+    max-height:92%;
+    border-radius:12px;
+    box-shadow:0 0 35px rgba(255,255,255,.25);
+}
+
+#imageModal .close{
+    position:absolute;
+    top:15px;
+    right:30px;
+    color:#fff;
+    font-size:50px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+@media(max-width:992px){
+    .product-showcase{ grid-template-columns:repeat(2,1fr); }
+}
+
+@media(max-width:600px){
+    .product-showcase{ grid-template-columns:1fr; }
+}
+</style>
+
+<section class="product-showcase">
+    <img src="LT17-HS-501.jpg" alt="">
+    <img src="LT17-HS-513.jpg" alt="">
+    <img src="LT17-HS-528.jpg" alt="">
+    <img src="LT17-HS-555.jpg" alt="">
+    <img src="LT17-HS-571.jpg" alt="">
+    <img src="LT17-HS-572.jpg" alt="">
+    <img src="LT17-HS-578.jpg" alt="">
+    <img src="LT17-HS-587.jpg" alt="">
+    <img src="LT17-HS-591.jpg" alt="">
+    <img src="LT14-HS-541.jpg" alt="">
+    <img src="LT14-HS-543.jpg" alt="">
+    <img src="LT15-MR-157.jpg" alt="">
+    <img src="LT16-HS-475.jpg" alt="">
+    <img src="LT16-HS-523.jpg" alt="">
+    <img src="LT16-HS-601.jpg" alt="">
+    <img src="LT16-HS-595.jpg" alt="">
+    <img src="LT16-HS-597.jpg" alt="">
+    <img src="LT16-HS-599.jpg" alt="">
+    <img src="LT16-HS-601.jpg" alt="">
+    <img src="LT16-HS-602.jpg" alt="">
+    <img src="LT16-HS-603.jpg" alt="">
+    <img src="LT16-HS-605.jpg" alt="">
+    <img src="LT16-HS-607.jpg" alt="">
+    <img src="LT17-HS-500.jpg" alt="">
+    <img src="LT12-HS-308.jpg" alt="">
+    <img src="LT12-HS-326.jpg" alt="">
+    <img src="HS73.jpg" alt="">
+    <img src="HS121.jpg" alt="">
+    <img src="HS122.jpg" alt="">
+    <img src="HS124.jpg" alt="">
+    <img src="HS261.jpg" alt="">
+</section>
+
+<div id="imageModal">
+    <span class="close">&times;</span>
+    <img id="popupImage" src="">
+</div>
+
+<script>
+const modal=document.getElementById("imageModal");
+const popup=document.getElementById("popupImage");
+const close=document.querySelector("#imageModal .close");
+
+document.querySelectorAll(".product-showcase img").forEach(function(img){
+    img.onclick=function(){
+        modal.style.display="flex";
+        popup.src=this.src;
+    };
+});
+
+close.onclick=function(){ modal.style.display="none"; };
+modal.onclick=function(e){ if(e.target===modal){ modal.style.display="none"; } };
+</script>
+<!-- ===== PRODUCT IMAGE GALLERY END ===== -->
+
+<section class="contact-section">
+    <div class="contact-container">
+        <h2>ORDER NOW</h2>
+        <a href="https://wa.me/923354287572" class="btn-whatsapp" target="_blank">&#128172; Connect via WhatsApp</a>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-logo-container">
+        <img src="parlogo.JPG" alt="Par by Itees Logo">
+    </div>
+    <p>&copy; 2026 Par by Itees;</p>
+    <p>Itees, Plot no J.M. 662/3, Qureshi Chowk Fatima Jinnah Colony, Jamshed Road # 2, Karachi.</p>
+</footer>
+
+<button class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#9650;</button>
+
+<script>
+/* ── PARTICLE BACKGROUND ── */
+(function(){
+    const c = document.getElementById('particle-canvas');
+    const x = c.getContext('2d');
+    function resize(){ c.width = innerWidth; c.height = innerHeight; }
+    resize();
+    addEventListener('resize', resize);
+
+    const pts = Array.from({length:55}, ()=>({
+        x: Math.random()*innerWidth,
+        y: Math.random()*innerHeight,
+        r: Math.random()*1.8+0.4,
+        dx:(Math.random()-.5)*.45,
+        dy:(Math.random()-.5)*.45,
+        a: Math.random()*.45+.15,
+        gold: Math.random()>.5
+    }));
+
+    function draw(){
+        x.clearRect(0,0,c.width,c.height);
+        pts.forEach(p=>{
+            p.x+=p.dx; p.y+=p.dy;
+            if(p.x<0||p.x>c.width)  p.dx*=-1;
+            if(p.y<0||p.y>c.height) p.dy*=-1;
+            x.beginPath();
+            x.arc(p.x,p.y,p.r,0,Math.PI*2);
+            x.fillStyle = p.gold ? `rgba(212,175,55,${p.a})` : `rgba(44,62,80,${p.a})`;
+            x.fill();
+        });
+        for(let i=0;i<pts.length;i++){
+            for(let j=i+1;j<pts.length;j++){
+                const d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);
+                if(d<110){
+                    x.beginPath();
+                    x.moveTo(pts[i].x,pts[i].y);
+                    x.lineTo(pts[j].x,pts[j].y);
+                    x.strokeStyle=`rgba(212,175,55,${.08*(1-d/110)})`;
+                    x.lineWidth=.5;
+                    x.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(draw);
+    }
+    draw();
+})();
+
+/* ── STICKY HEADER + SCROLL-TOP ── */
+const hdr = document.getElementById('site-header');
+const stb = document.getElementById('scrollTopBtn');
+addEventListener('scroll', ()=>{
+    hdr.classList.toggle('scrolled', scrollY>60);
+    stb.classList.toggle('show', scrollY>400);
+});
+
+/* ── INTERSECTION OBSERVER — generic .reveal ── */
+const revObs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('vis'); });
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+</script>
+
+
+
+</body>
+</html>
